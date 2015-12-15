@@ -47,6 +47,7 @@ Article.prototype.deleteRecord = function(callback) {
 
 Article.all = [];
 
+//Will grab the JSON data from blogArticles
 Article.requestAll = function(next, callback) {
   $.getJSON('/scripts/blogArticles.json', function (data) {
     data.forEach(function(item) {
@@ -57,6 +58,7 @@ Article.requestAll = function(next, callback) {
   });
 };
 
+//Will load all articles from server
 Article.loadAll = function(callback) {
   var callback = callback || function() {};
 
@@ -91,6 +93,7 @@ Article.find = function(id, callback) {
   );
 };
 
+//Delete all articles
 Article.truncateTable = function(callback) {
   // Delete all records from given table.
   webDB.execute('DELETE FROM articles;',

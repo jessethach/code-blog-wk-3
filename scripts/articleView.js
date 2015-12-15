@@ -21,15 +21,21 @@ articleView.index = function() {
 };
 
 articleView.render = function(article) {
-  // if (!blog.isAdmin() && !this.publishedOn) {
-  //   return '';
-  // }
   article.daysAgo =
     parseInt((new Date() - new Date(article.publishedOn))/60/60/24/1000);
 
   article.publishStatus = article.publishedOn ? 'published ' + article.daysAgo + ' days ago' : '(draft)';
   article.authorSlug = util.slug(article.author);
   article.categorySlug = util.slug(article.category);
+
+  return articleView.template(article);
+};
+
+articleView.renderByID = function(id) {
+  article.daysAgo =
+    parseInt((new Date() - new Date(article.publishedOn))/60/60/24/1000);
+
+  article.publishStatus = article.publishedOn ? 'published ' + article.daysAgo + ' days ago' : '(draft)';
 
   return articleView.template(article);
 };
