@@ -31,7 +31,8 @@ articleView.render = function(article) {
   return articleView.template(article);
 };
 
-articleView.renderByID = function(id) {
+//Attempting to render article by ID
+articleView.renderByID = function(article) {
   article.daysAgo =
     parseInt((new Date() - new Date(article.publishedOn))/60/60/24/1000);
 

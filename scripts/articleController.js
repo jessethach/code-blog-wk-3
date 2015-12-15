@@ -8,7 +8,10 @@ articlesController.index = function () {
 articlesController.loadID = function(ctx, next) {
   //Create method of matching id and directing user to specific page
   var id = ctx.params.id;
-  Article.find(id);
+  Article.find(id, function(data) {
+    data = data[0];
+    console.log(data);
+  });
     next();
   };
 
