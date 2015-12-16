@@ -8,11 +8,14 @@ articlesController.index = function () {
 articlesController.loadID = function(ctx, next) {
   //Create method of matching id and directing user to specific page
   var id = ctx.params.id;
-  Article.find(id);
-    next();
-  };
+  Article.find(id, function(data) {
+    data = data[0];
+    console.log(data);
+  });
+  next();
+};
 
-  articlesController.showID = function(ctx) {
+articlesController.showID = function(ctx) {
   console.log(ctx);
   $('#articles')
   .empty();

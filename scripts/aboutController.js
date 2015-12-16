@@ -1,7 +1,7 @@
 var aboutController = {};
 
-aboutController.about = function() {
+aboutController.index = function() {
   $('#spinner').hide();
   $('#articles').hide();
   $('#about').show();
-}
+};

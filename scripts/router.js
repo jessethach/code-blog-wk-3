@@ -1,7 +1,7 @@
 page('/', articlesController.index);
 
-page('/about', aboutController.about);
+page('/about', reposController.index);
 
-page('/:id', articlesController.loadID, articlesController.showID);
+page('/:id', articlesController.loadID);
 
 page.start();
