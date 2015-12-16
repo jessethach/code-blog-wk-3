@@ -12,10 +12,10 @@ articlesController.loadID = function(ctx, next) {
     data = data[0];
     console.log(data);
   });
-    next();
-  };
+  next();
+};
 
-  articlesController.showID = function(ctx) {
+articlesController.showID = function(ctx) {
   console.log(ctx);
   $('#articles')
   .empty();

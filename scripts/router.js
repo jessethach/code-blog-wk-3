@@ -1,7 +1,6 @@
 page('/', articlesController.index);
 
-page('/about', aboutController.about);
-page('/about', aboutController.about);
+page('/about', reposController.index);
 
 page('/:id', articlesController.loadID);
 
