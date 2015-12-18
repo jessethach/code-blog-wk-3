@@ -20,6 +20,30 @@ articleView.index = function() {
   }
 };
 
+articleView.loadTemplate = function(articles) {
+  $.get('/templates/article.html', function(data, msg, xhr) {
+    articleView.template = Handlebars.compile(data);
+    articleView.renderGroup(articles);
+  });
+};
+
+articleView.renderGroup = function(articles) {
+  $('#about').hide();
+  $('#spinner').hide();
+  $('#articles')
+    .empty()
+    .fadeIn()
+    .append(
+      articles.map(function(article){
+        return articleView.render(article);
+      })
+  );//list of articles
+};
+
+articleView.show = function(articles) {
+  articleView.loadTemplate(articles);
+};
+
 articleView.render = function(article) {
   article.daysAgo =
     parseInt((new Date() - new Date(article.publishedOn))/60/60/24/1000);
