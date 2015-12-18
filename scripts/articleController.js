@@ -4,24 +4,35 @@ articlesController.index = function () {
   Article.loadAll(articleView.index);
 };
 
-//Build a load function that will load the user for subsequent routes you'll need to access the ":id" passed.
-articlesController.loadID = function(ctx, next) {
-  //Create method of matching id and directing user to specific page
-  var id = ctx.params.id;
-  Article.find(id, function(data) {
-    data = data[0];
-    console.log(data);
-  });
-  next();
+//Will filter the articles by category
+articlesController.category = function(ctx, next) {
+  var categoryData = function(data) {
+    ctx.data = data;
+    next();
+  };
+  Article.findByCategory(ctx.params.category, categoryData);
 };
 
-articlesController.showID = function(ctx) {
+articlesController.author = function(ctx, next) {
   console.log(ctx);
-  $('#articles')
-  .empty();
+  var authorData = function(data) {
+    ctx.data = data;
+    next();
+  };
+  Article.findByAuthor(ctx.params.author, authorData);
+};
 
-  //Need to write code to match context to the artticle in the database
+//Build a load function that will load the user for subsequent routes you'll need to access the ":id" passed.
+articlesController.ID = function(ctx, next) {
+  var idData = function(data) {
+    console.log(data);
+    ctx.data = data;
+    next();
+  };
+  Article.findID(ctx.params.id, idData);
+};
 
-  // .append('<h1>' + ctx.user.name + '<h1>');
-  // articleView.render(ctx).done;
+articlesController.show = function(ctx) {
+  console.log(ctx.data);
+  articleView.show(ctx.data);
 };

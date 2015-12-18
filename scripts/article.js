@@ -81,12 +81,36 @@ Article.loadAll = function(callback) {
   }
 };
 
-Article.find = function(id, callback) {
+Article.findID = function(id, callback) {
   webDB.execute(
     [
       {
         'sql': 'SELECT * FROM articles WHERE id = ?',
         'data': [id]
+      }
+    ],
+    callback
+  );
+};
+
+Article.findByCategory = function(category, callback) {
+  webDB.execute(
+    [
+      {
+        'sql': 'SELECT * FROM articles WHERE category = ?',
+        'data': [category]
+      }
+    ],
+    callback
+  );
+};
+
+Article.findByAuthor = function(author, callback) {
+  webDB.execute(
+    [
+      {
+        'sql': 'SELECT * FROM articles WHERE author = ?',
+        'data': [author]
       }
     ],
     callback

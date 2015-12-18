@@ -10,6 +10,7 @@ repos.requestRepos = function(callback) {
           '&sort=updated',
     type: 'GET',
     success: function(data, message, xhr) {
+      console.log(data);
       repos.all = data;
       repos.owner = repos.all[0].owner.html_url;
     }
